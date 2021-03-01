@@ -14,6 +14,3 @@ class Candidate {
       this.candidateSkills,
       this.candidateStatus);
 }
-///
-/// actually seeing where you need to be shitposting self is your pure skill
-///

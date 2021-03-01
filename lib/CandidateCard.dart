@@ -1,10 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jogja_career/constant.dart';
 import 'Candidate.dart';
 
 class CandidateCard extends StatelessWidget {
-  Color primary = Color(0xff1a7fc1);
-  Color appbar = Color(0xfff2fbff);
-
   final List<Candidate> candidateList = [
     Candidate(
         Icon(Icons.account_box),
@@ -42,6 +41,7 @@ class CandidateCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: new ListView.builder(
+          padding: EdgeInsets.only(top: 15),
           physics: BouncingScrollPhysics(),
           itemCount: candidateList.length,
           itemBuilder: (BuildContext context, int index) =>
@@ -49,19 +49,31 @@ class CandidateCard extends StatelessWidget {
     );
   }
 
-  Widget candidateDetail(int index) {
+  Widget candidateDetail(int index, BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
+        backgroundColor: kPrimaryColor,
         title: Text('Candidate Details'),
+        leading: Container(
+          color: Colors.white,
+          child: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: Navigator.of(context).pop,
+            tooltip: ('Back'),
+          ),
+        ),
         actions: [
-          IconButton(
-              icon: Icon(Icons.share_outlined),
-              onPressed: shareCandidate,
-              tooltip: ('Share')),
+          Container(
+              color: Colors.white,
+              child: IconButton(
+                  icon: Icon(Icons.share_outlined),
+                  onPressed: Navigator.of(context).pop,
+                  tooltip: ('Share'))),
         ],
       ),
-      body: Text('sddasdsasd is $index'),
+      body: Text('This is $index'),
     );
   }
 
@@ -75,20 +87,24 @@ class CandidateCard extends StatelessWidget {
         Navigator.of(context).push(MaterialPageRoute<void>(
           builder: (BuildContext context) {
             return Scaffold(
-              body: candidateDetail(index),
+              body: candidateDetail(index, context),
             );
           },
         ));
       },
       child: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 5, top: 5),
+        padding: const EdgeInsets.only(
+            left: kDefaultPadding,
+            right: kDefaultPadding,
+            bottom: kDefaultPadding * 0.25,
+            top: kDefaultPadding * 0.25),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10)),
-            side: BorderSide(width: 1.5, color: primary),
+            side: BorderSide(width: 1.5, color: kPrimaryColor),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(kDefaultPadding * 0.8),
             child: Column(
               children: <Widget>[
                 Padding(
