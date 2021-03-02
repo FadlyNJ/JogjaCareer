@@ -42,10 +42,6 @@ class _CardState extends State<CandidateCard> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: kPrimaryColor,
-
-        ///
-        /// west part of welsh
-        /// it's fucking huge there's a really
         title: Text('Candidate Details'),
         leading: Container(
           color: Colors.white,
