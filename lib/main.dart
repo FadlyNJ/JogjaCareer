@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'NotifikasiCard.dart';
 import 'CandidateCard.dart';
 import 'constant.dart';
 import 'dart:math' as math;
@@ -38,7 +39,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawerScrimColor: kScrimColor.withOpacity(0.4),
       backgroundColor: kBackgroundColor,
       appBar: _appBarHome(),
       drawer: _menuDrawer(),
@@ -55,9 +55,9 @@ class _HomeState extends State<Home> {
       centerTitle: true,
       backgroundColor: kAppbarColor,
       title: Text('Beranda',
-          style: TextStyle(
-            fontSize: 25,
-          )),
+          style: Theme.of(context).textTheme.headline5.copyWith(
+                fontWeight: FontWeight.bold,
+              )),
       leading: Builder(
         builder: (BuildContext context) {
           return IconButton(
@@ -138,49 +138,54 @@ class _HomeState extends State<Home> {
     return CandidateCard();
   }
 
+  Widget _notificationCard() {
+    return NotificationCard();
+  }
+
   Widget _headerSearchBar() {
     Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.all(kDefaultPadding),
       height: size.height * 0.13,
       color: kAppbarColor,
-      child: Column(
-        children: [
-          Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-            new Expanded(
-                child: new Container(
-              padding: EdgeInsets.only(
-                  left: kDefaultPadding, right: kDefaultPadding),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: ('Cari Karyawan'),
-                  hintStyle: TextStyle(
-                    color: kSearchBarColor,
-                  ),
-                  enabledBorder: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  suffixIcon: Icon(Icons.search, color: kSearchBarColor),
+      child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
+        new Expanded(
+            child: new Container(
+          padding: EdgeInsets.only(right: kDefaultPadding * 0.5),
+          child: Container(
+            padding: EdgeInsets.only(left: kDefaultPadding),
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(8)),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: ('Cari Karyawan'),
+                hintStyle: TextStyle(
+                  color: kSearchBarColor,
                 ),
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                suffixIcon: Icon(Icons.search, color: kSearchBarColor),
               ),
-            )),
-            new Wrap(
-              children: [
-                new MaterialButton(
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  onPressed: _onPressed,
-                  child: Text('Cari'),
-                  color: kPrimaryColor,
-                )
-              ],
+            ),
+          ),
+        )),
+        new Wrap(
+          children: [
+            new MaterialButton(
+              textColor: Colors.white,
+              color: kPrimaryColor,
+              minWidth: 0,
+              height: 45,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Text('Cari',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              onPressed: _onPressed,
             )
-          ]),
-        ],
-      ),
+          ],
+        )
+      ]),
     );
   }
 
@@ -191,11 +196,11 @@ class _HomeState extends State<Home> {
         elevation: 0,
         centerTitle: true,
         backgroundColor: kAppbarColor,
+        automaticallyImplyLeading: false,
         title: Text('Post Lowongan',
             style: TextStyle(
               fontSize: 25,
             )),
-        automaticallyImplyLeading: false,
         actions: [
           Transform.rotate(
             angle: 45 * math.pi / 180,
@@ -226,14 +231,23 @@ class _HomeState extends State<Home> {
           topRight: Radius.circular(60), bottomRight: Radius.circular(60)),
       child: Drawer(
         child: ListView(
+          physics: BouncingScrollPhysics(),
           children: [
             Padding(
               padding: const EdgeInsets.only(
                   top: kDefaultPadding,
                   left: kDefaultPadding,
-                  right: kDefaultPadding),
+                  right: kDefaultPadding,
+                  bottom: kDefaultPadding),
               child: Row(children: <Widget>[
-                Text('Menu', textAlign: TextAlign.start),
+                Text(
+                  'Menu',
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.headline4.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
                 Spacer(),
                 Transform.rotate(
                   angle: 45 * math.pi / 180,
@@ -246,19 +260,37 @@ class _HomeState extends State<Home> {
               ]),
             ),
             ListTile(
-              title: Text('Kebijakan'),
+              title: Text(
+                'Kebijakan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: () {
                 _closeDrawer();
               },
             ),
             ListTile(
-              title: Text('Pengaturan'),
+              title: Text(
+                'Pengaturan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: () {
                 _closeDrawer();
               },
             ),
             ListTile(
-              title: Text('Update Aplikasi'),
+              title: Text(
+                'Update Aplikasi',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               onTap: () {
                 _closeDrawer();
               },
@@ -275,15 +307,21 @@ class _HomeState extends State<Home> {
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(50), bottomLeft: Radius.circular(50)),
       child: Drawer(
-        child: ListView(
+        child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: kDefaultPadding, left: kDefaultPadding),
+                  top: kDefaultPadding * 2,
+                  left: kDefaultPadding,
+                  bottom: kDefaultPadding),
               child: Row(children: <Widget>[
                 Text(
                   'Notifikasi',
                   textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.headline4.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 Spacer(),
                 Transform.rotate(
@@ -296,18 +334,13 @@ class _HomeState extends State<Home> {
                 ),
               ]),
             ),
+            Expanded(child: _notificationCard()),
             Padding(
                 padding: EdgeInsets.all(20),
                 child: Text(
                   'Belum ada Notifikasi',
                   textAlign: TextAlign.start,
                 )),
-            ListTile(
-              title: Text('Notification'),
-              onTap: () {
-                _closeDrawer();
-              },
-            ),
           ],
         ),
       ),

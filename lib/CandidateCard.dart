@@ -3,45 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:jogja_career/constant.dart';
 import 'Candidate.dart';
 
-class CandidateCard extends StatelessWidget {
+class CandidateCard extends StatefulWidget {
+  @override
+  _CardState createState() => _CardState();
+}
+
+class _CardState extends State<CandidateCard> {
+  bool toggle = true;
+
   final List<Candidate> candidateList = [
-    Candidate(
-        Icon(Icons.account_box),
-        "UI / UX Design",
-        "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting",
-        "Tersedia"),
-    Candidate(
-        Icon(Icons.account_box),
-        "UI / UX Design",
-        "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting",
-        "Tersedia"),
-    Candidate(
-        Icon(Icons.account_box),
-        "UI / UX Design",
-        "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting",
-        "Tersedia"),
-    Candidate(
-        Icon(Icons.account_box),
-        "UI / UX Design",
-        "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting",
-        "Tersedia"),
-    Candidate(
-        Icon(Icons.account_box),
-        "UI / UX Design",
-        "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting",
-        "Tersedia"),
+    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
+        "Design Thinking, Wireframing, Layouting", "Tersedia"),
+    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
+        "Design Thinking, Wireframing, Layouting", "Tersedia"),
+    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
+        "Design Thinking, Wireframing, Layouting", "Tersedia"),
+    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
+        "Design Thinking, Wireframing, Layouting", "Tersedia"),
+    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
+        "Design Thinking, Wireframing, Layouting", "Tersedia"),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: new ListView.builder(
-          padding: EdgeInsets.only(top: 15),
+          padding: EdgeInsets.only(top: kDefaultPadding * 0.75),
           physics: BouncingScrollPhysics(),
           itemCount: candidateList.length,
           itemBuilder: (BuildContext context, int index) =>
@@ -55,6 +42,10 @@ class CandidateCard extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         backgroundColor: kPrimaryColor,
+
+        ///
+        /// west part of welsh
+        /// it's fucking huge there's a really
         title: Text('Candidate Details'),
         leading: Container(
           color: Colors.white,
@@ -73,11 +64,23 @@ class CandidateCard extends StatelessWidget {
                   tooltip: ('Share'))),
         ],
       ),
-      body: Text('This is $index'),
+      body: Text('This is Card Number $index'),
     );
   }
 
-  void shareCandidate() {}
+  void _showToast(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Text('Kamu Berhasil Menyimpan !'),
+        action: SnackBarAction(
+            label: 'DISMISS',
+            textColor: kPrimaryColor,
+            onPressed: () {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            }),
+      ),
+    );
+  }
 
   Widget candidateCard(BuildContext context, int index) {
     final candidate = candidateList[index];
@@ -93,6 +96,7 @@ class CandidateCard extends StatelessWidget {
         ));
       },
       child: Container(
+        height: 160,
         padding: const EdgeInsets.only(
             left: kDefaultPadding,
             right: kDefaultPadding,
@@ -103,46 +107,94 @@ class CandidateCard extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(10)),
             side: BorderSide(width: 1.5, color: kPrimaryColor),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(kDefaultPadding * 0.8),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
-                  child: Row(children: <Widget>[
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Container(),
+              Container(
+                margin: EdgeInsets.only(top: 10, left: 10, right: 10),
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: kPrimaryColor, width: 1.5)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.network(
+                      'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
+                ),
+              ),
+              Container(
+                width: 140,
+                height: 110,
+                margin: EdgeInsets.only(top: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
                     Text(
                       candidate.candidateName,
-                      style: new TextStyle(fontSize: 30.0),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      candidate.candidateJob,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(height: 4),
+                    Text(candidate.candidateSkills,
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xffc1cbd6)),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2),
+                  ],
+                ),
+              ),
+              Spacer(),
+              Container(
+                height: 108,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      child: IconButton(
+                          icon: toggle
+                              ? Icon(
+                                  Icons.bookmark_outline,
+                                  color: kPrimaryColor,
+                                )
+                              : Icon(
+                                  Icons.bookmark,
+                                  color: kPrimaryColor,
+                                ),
+                          onPressed: () {
+                            setState(() {
+                              if (!(toggle = !toggle)) {
+                                _showToast(context);
+                              }
+                            });
+                          }),
                     ),
                     Spacer(),
-                  ]),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Container(
+                        padding: EdgeInsets.only(right: 10),
+                        child: Text(
+                          candidate.candidateStatus,
+                          style: TextStyle(color: Color(0xFF9fa5ab)),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0, bottom: 80.0),
-                  child: Row(children: <Widget>[
-                    Text(candidate.candidateStatus),
-                    Spacer(),
-                  ]),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
-                  child: Row(children: <Widget>[
-                    Text(candidate.candidateJob),
-                    Spacer(),
-                  ]),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  child: Row(
-                    children: <Widget>[
-                      Text(candidate.candidateSkills),
-                      Spacer(),
-                      candidate.candidateImage,
-                    ],
-                  ),
-                )
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
