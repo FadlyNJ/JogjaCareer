@@ -13,45 +13,59 @@ class _NotificationState extends State<NotificationCard> {
 
   final List<Notifikasi> notifikasiList = [
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
     Notifikasi(
-        "Salsabila Rahma Wijaya", "UI / UX Design", "IMAGE", "2 hari lalu"),
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+    Notifikasi(
+        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
   ];
 
   @override
@@ -100,17 +114,19 @@ class _NotificationState extends State<NotificationCard> {
     return new GestureDetector(
       onTap: () {
         print(index);
-        Navigator.of(context).push(MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            return Scaffold(
-              body: notifikasiDetail(index, context),
-            );
-          },
-        ));
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return Scaffold(
+                body: notifikasiDetail(index, context),
+              );
+            },
+          ),
+        );
       },
       child: Card(
         margin: EdgeInsets.zero,
-        elevation: 1,
+        elevation: 0,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,

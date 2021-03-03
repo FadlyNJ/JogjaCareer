@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.white),
       home: Home(),
     );
@@ -17,25 +18,6 @@ class MyApp extends StatelessWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _currentIndex = 0;
-
-  void _addJob() {
-    Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (BuildContext context) {
-        return Scaffold(
-          appBar: _appBarAddJob(),
-          body: _body(),
-        );
-      },
-    ));
-  }
-
-  void _closeDrawer() {
-    Navigator.of(context).pop();
-  }
-
-  void _onPressed() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,25 +103,16 @@ class _HomeState extends State<Home> {
 
   Widget _body() {
     return GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus.unfocus();
-        },
-        child: SafeArea(
-          child: Column(
-            children: [
-              _headerSearchBar(),
-              new Expanded(child: _candidateCard()),
-            ],
-          ),
-        ));
-  }
-
-  Widget _candidateCard() {
-    return CandidateCard();
-  }
-
-  Widget _notificationCard() {
-    return NotificationCard();
+      onTap: () {
+        FocusManager.instance.primaryFocus.unfocus();
+      },
+      child: Column(
+        children: [
+          _headerSearchBar(),
+          new Expanded(child: _candidateCard()),
+        ],
+      ),
+    );
   }
 
   Widget _headerSearchBar() {
@@ -148,44 +121,50 @@ class _HomeState extends State<Home> {
       padding: EdgeInsets.all(kDefaultPadding),
       height: size.height * 0.13,
       color: kAppbarColor,
-      child: Row(mainAxisSize: MainAxisSize.max, children: <Widget>[
-        new Expanded(
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          new Expanded(
             child: new Container(
-          padding: EdgeInsets.only(right: kDefaultPadding * 0.5),
-          child: Container(
-            padding: EdgeInsets.only(left: kDefaultPadding),
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(8)),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: ('Cari Karyawan'),
-                hintStyle: TextStyle(
-                  color: kSearchBarColor,
+              padding: EdgeInsets.only(right: kDefaultPadding * 0.5),
+              child: Container(
+                padding: EdgeInsets.only(left: kDefaultPadding),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: ('Cari Karyawan'),
+                    hintStyle: TextStyle(
+                      color: kSearchBarColor,
+                    ),
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    suffixIcon: Icon(Icons.search, color: kSearchBarColor),
+                  ),
                 ),
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                suffixIcon: Icon(Icons.search, color: kSearchBarColor),
               ),
             ),
           ),
-        )),
-        new Wrap(
-          children: [
-            new MaterialButton(
-              textColor: Colors.white,
-              color: kPrimaryColor,
-              minWidth: 0,
-              height: 45,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+          new Wrap(
+            children: [
+              new MaterialButton(
+                textColor: Colors.white,
+                color: kPrimaryColor,
+                minWidth: 0,
+                height: 45,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text('Cari',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                onPressed: _onPressed,
               ),
-              child: Text('Cari',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              onPressed: _onPressed,
-            )
-          ],
-        )
-      ]),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -239,25 +218,27 @@ class _HomeState extends State<Home> {
                   left: kDefaultPadding,
                   right: kDefaultPadding,
                   bottom: kDefaultPadding),
-              child: Row(children: <Widget>[
-                Text(
-                  'Menu',
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline4.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                Spacer(),
-                Transform.rotate(
-                  angle: 45 * math.pi / 180,
-                  child: IconButton(
-                      icon: Icon(Icons.add),
-                      iconSize: 35,
-                      tooltip: ('Tutup'),
-                      onPressed: _closeDrawer),
-                ),
-              ]),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'Menu',
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.headline4.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  Spacer(),
+                  Transform.rotate(
+                    angle: 45 * math.pi / 180,
+                    child: IconButton(
+                        icon: Icon(Icons.add),
+                        iconSize: 35,
+                        tooltip: ('Tutup'),
+                        onPressed: _closeDrawer),
+                  ),
+                ],
+              ),
             ),
             ListTile(
               title: Text(
@@ -271,6 +252,7 @@ class _HomeState extends State<Home> {
                 _closeDrawer();
               },
             ),
+            Divider(thickness: 1),
             ListTile(
               title: Text(
                 'Pengaturan',
@@ -283,6 +265,7 @@ class _HomeState extends State<Home> {
                 _closeDrawer();
               },
             ),
+            Divider(thickness: 1),
             ListTile(
               title: Text(
                 'Update Aplikasi',
@@ -295,7 +278,7 @@ class _HomeState extends State<Home> {
                 _closeDrawer();
               },
             ),
-            Divider(),
+            Divider(thickness: 1),
           ],
         ),
       ),
@@ -314,38 +297,63 @@ class _HomeState extends State<Home> {
                   top: kDefaultPadding * 2,
                   left: kDefaultPadding,
                   bottom: kDefaultPadding),
-              child: Row(children: <Widget>[
-                Text(
-                  'Notifikasi',
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.headline4.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                Spacer(),
-                Transform.rotate(
-                  angle: 45 * math.pi / 180,
-                  child: IconButton(
-                      icon: Icon(Icons.add),
-                      iconSize: 35,
-                      tooltip: ('Tutup'),
-                      onPressed: _closeDrawer),
-                ),
-              ]),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'Notifikasi',
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.headline4.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  Spacer(),
+                  Transform.rotate(
+                    angle: 45 * math.pi / 180,
+                    child: IconButton(
+                        icon: Icon(Icons.add),
+                        iconSize: 35,
+                        tooltip: ('Tutup'),
+                        onPressed: _closeDrawer),
+                  ),
+                ],
+              ),
             ),
             Expanded(child: _notificationCard()),
-            Padding(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  'Belum ada Notifikasi',
-                  textAlign: TextAlign.start,
-                )),
           ],
         ),
       ),
     );
   }
+
+  Widget _candidateCard() {
+    return CandidateCard();
+  }
+
+  Widget _notificationCard() {
+    return NotificationCard();
+  }
+
+  int _currentIndex = 0;
+
+  void _addJob() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return Scaffold(
+            appBar: _appBarAddJob(),
+            body: _body(),
+          );
+        },
+      ),
+    );
+  }
+
+  void _closeDrawer() {
+    Navigator.of(context).pop();
+  }
+
+  void _onPressed() {}
 }
 
 class Home extends StatefulWidget {

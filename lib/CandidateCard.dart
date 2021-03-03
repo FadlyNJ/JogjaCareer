@@ -9,30 +9,57 @@ class CandidateCard extends StatefulWidget {
 }
 
 class _CardState extends State<CandidateCard> {
-  bool toggle = true;
+  List<bool> selected = [];
 
   final List<Candidate> candidateList = [
-    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting", "Tersedia"),
-    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting", "Tersedia"),
-    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting", "Tersedia"),
-    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting", "Tersedia"),
-    Candidate("UI / UX Design", "Salsabila Rahma Wijaya",
-        "Design Thinking, Wireframing, Layouting", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
+    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+        "Java, Dart, Flutter, Kotlin", "Tersedia"),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: new ListView.builder(
-          padding: EdgeInsets.only(top: kDefaultPadding * 0.75),
-          physics: BouncingScrollPhysics(),
-          itemCount: candidateList.length,
-          itemBuilder: (BuildContext context, int index) =>
-              candidateCard(context, index)),
+        padding: EdgeInsets.only(
+            top: kDefaultPadding * 0.75, bottom: kDefaultPadding * 0.75),
+        physics: BouncingScrollPhysics(),
+        itemCount: candidateList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return candidateCard(context, index);
+        },
+      ),
     );
   }
 
@@ -60,36 +87,28 @@ class _CardState extends State<CandidateCard> {
                   tooltip: ('Share'))),
         ],
       ),
-      body: Text('This is Card Number $index'),
-    );
-  }
-
-  void _showToast(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Kamu Berhasil Menyimpan !'),
-        action: SnackBarAction(
-            label: 'DISMISS',
-            textColor: kPrimaryColor,
-            onPressed: () {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            }),
+      body: Align(
+        alignment: Alignment.center,
+        child: Text('This is Card Number $index'),
       ),
     );
   }
 
   Widget candidateCard(BuildContext context, int index) {
     final candidate = candidateList[index];
+    selected.add(true);
     return new GestureDetector(
       onTap: () {
         print(index);
-        Navigator.of(context).push(MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            return Scaffold(
-              body: candidateDetail(index, context),
-            );
-          },
-        ));
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return Scaffold(
+                body: candidateDetail(index, context),
+              );
+            },
+          ),
+        );
       },
       child: Container(
         height: 160,
@@ -151,7 +170,7 @@ class _CardState extends State<CandidateCard> {
               ),
               Spacer(),
               Container(
-                height: 108,
+                height: 118,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,22 +178,44 @@ class _CardState extends State<CandidateCard> {
                     Container(
                       padding: EdgeInsets.only(left: 10),
                       child: IconButton(
-                          icon: toggle
-                              ? Icon(
-                                  Icons.bookmark_outline,
-                                  color: kPrimaryColor,
-                                )
-                              : Icon(
-                                  Icons.bookmark,
-                                  color: kPrimaryColor,
-                                ),
-                          onPressed: () {
-                            setState(() {
-                              if (!(toggle = !toggle)) {
-                                _showToast(context);
+                        color: kPrimaryColor,
+                        icon: Icon(
+                          selected.elementAt(index)
+                              ? Icons.bookmark_outline
+                              : Icons.bookmark,
+                        ),
+                        onPressed: () {
+                          setState(
+                            () {
+                              selected[index] =
+                                  selected[index] == false ? true : false;
+
+                              if (selected[index] == false) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  new SnackBar(
+                                    content: const Text('Bookmark Berhasil Disimpan !'),
+                                    action: SnackBarAction(
+                                        label: 'DISMISS',
+                                        onPressed: ScaffoldMessenger.of(context)
+                                            .hideCurrentSnackBar),
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  new SnackBar(
+                                    content:
+                                        const Text('Bookmark Berhasil Dihapus !'),
+                                    action: SnackBarAction(
+                                        label: 'UNDO',
+                                        onPressed: ScaffoldMessenger.of(context)
+                                            .hideCurrentSnackBar),
+                                  ),
+                                );
                               }
-                            });
-                          }),
+                            },
+                          );
+                        },
+                      ),
                     ),
                     Spacer(),
                     Align(

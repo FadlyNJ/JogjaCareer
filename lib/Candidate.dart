@@ -4,9 +4,6 @@ class Candidate {
   final String candidateStatus;
   final String candidateSkills;
 
-  Candidate(
-      this.candidateJob,
-      this.candidateName,
-      this.candidateSkills,
+  Candidate(this.candidateJob, this.candidateName, this.candidateSkills,
       this.candidateStatus);
 }
