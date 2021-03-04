@@ -1,10 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'NotifikasiCard.dart';
 import 'CandidateCard.dart';
 import 'constant.dart';
+import 'package:jogja_career/PostLowongan.dart';
 import 'dart:math' as math;
 
 void main() => runApp(MyApp());
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -168,31 +175,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _appBarAddJob() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(60),
-      child: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: kAppbarColor,
-        automaticallyImplyLeading: false,
-        title: Text('Post Lowongan',
-            style: TextStyle(
-              fontSize: 25,
-            )),
-        actions: [
-          Transform.rotate(
-            angle: 45 * math.pi / 180,
-            child: IconButton(
-                icon: Icon(Icons.add),
-                tooltip: ('Close'),
-                onPressed: Navigator.of(context).pop),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _fabAddJob() {
     return Container(
       margin: const EdgeInsets.only(bottom: kDefaultPadding * 0.9),
@@ -338,12 +320,9 @@ class _HomeState extends State<Home> {
 
   void _addJob() {
     Navigator.of(context).push(
-      MaterialPageRoute<void>(
+      MaterialPageRoute(
         builder: (BuildContext context) {
-          return Scaffold(
-            appBar: _appBarAddJob(),
-            body: _body(),
-          );
+          return PostLowongan();
         },
       ),
     );
@@ -354,9 +333,4 @@ class _HomeState extends State<Home> {
   }
 
   void _onPressed() {}
-}
-
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
 }
