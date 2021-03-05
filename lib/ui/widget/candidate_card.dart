@@ -1,50 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jogja_career/constant.dart';
-import 'Candidate.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:jogja_career/utils/const.dart';
+import 'package:jogja_career/models/candidate.dart';
+import 'package:jogja_career/ui/screen/candidate_detail_screen.dart';
 
 class CandidateCard extends StatefulWidget {
   @override
-  _CardState createState() => _CardState();
+  _CandidateCardState createState() => _CandidateCardState();
 }
 
-class _CardState extends State<CandidateCard> {
+class _CandidateCardState extends State<CandidateCard> {
   List<bool> selected = [];
 
-  final List<Candidate> candidateList = [
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+  final List<candidate> candidateList = [
+    candidate("Mobile App Developer", "Fadly Nugraha Jati",
         "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+    candidate("Mobile App Developer", "Fadly Nugraha Jati",
         "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+    candidate("Mobile App Developer", "Fadly Nugraha Jati",
         "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+    candidate("Mobile App Developer", "Fadly Nugraha Jati",
         "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    Candidate("Mobile App Developer", "Fadly Nugraha Jati",
+    candidate("Mobile App Developer", "Fadly Nugraha Jati",
         "Java, Dart, Flutter, Kotlin", "Tersedia"),
   ];
 
@@ -59,37 +36,6 @@ class _CardState extends State<CandidateCard> {
         itemBuilder: (BuildContext context, int index) {
           return candidateCard(context, index);
         },
-      ),
-    );
-  }
-
-  Widget candidateDetail(int index, BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: kPrimaryColor,
-        title: Text('Candidate Details'),
-        leading: Container(
-          color: Colors.white,
-          child: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: Navigator.of(context).pop,
-            tooltip: ('Back'),
-          ),
-        ),
-        actions: [
-          Container(
-              color: Colors.white,
-              child: IconButton(
-                  icon: Icon(Icons.share_outlined),
-                  onPressed: Navigator.of(context).pop,
-                  tooltip: ('Share'))),
-        ],
-      ),
-      body: Align(
-        alignment: Alignment.center,
-        child: Text('This is Card Number $index'),
       ),
     );
   }
@@ -160,6 +106,9 @@ class _CardState extends State<CandidateCard> {
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(height: 4),
+
+                    ///
+                    /// you didn't even wash your hand
                     Text(candidate.candidateSkills,
                         style:
                             TextStyle(fontSize: 12, color: Color(0xffc1cbd6)),
@@ -193,7 +142,8 @@ class _CardState extends State<CandidateCard> {
                               if (selected[index] == false) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   new SnackBar(
-                                    content: const Text('Bookmark Berhasil Disimpan !'),
+                                    content: const Text(
+                                        'Bookmark Berhasil Disimpan !'),
                                     action: SnackBarAction(
                                         label: 'DISMISS',
                                         onPressed: ScaffoldMessenger.of(context)
@@ -203,8 +153,8 @@ class _CardState extends State<CandidateCard> {
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   new SnackBar(
-                                    content:
-                                        const Text('Bookmark Berhasil Dihapus !'),
+                                    content: const Text(
+                                        'Bookmark Berhasil Dihapus !'),
                                     action: SnackBarAction(
                                         label: 'UNDO',
                                         onPressed: ScaffoldMessenger.of(context)

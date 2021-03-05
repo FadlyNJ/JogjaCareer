@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jogja_career/constant.dart';
+import 'package:jogja_career/utils/const.dart';
 import 'dart:math' as math;
 
-class PostLowongan extends StatefulWidget {
+class PostJob extends StatefulWidget {
   @override
-  _LowonganState createState() => _LowonganState();
+  _PostJobState createState() => _PostJobState();
 }
 
-class _LowonganState extends State<PostLowongan> {
+class _PostJobState extends State<PostJob> {
   String _valCategory;
   List _myCategory = [
     "Informasi dan Teknologi",
@@ -88,10 +88,10 @@ class _LowonganState extends State<PostLowongan> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      myFilterChip(chipLabel: 'SMA'),
-                      myFilterChip(chipLabel: 'Diploma'),
-                      myFilterChip(chipLabel: 'Sarjana'),
-                      myFilterChip(chipLabel: 'Umum'),
+                      MyFilterChip(chipLabel: 'SMA'),
+                      MyFilterChip(chipLabel: 'Diploma'),
+                      MyFilterChip(chipLabel: 'Sarjana'),
+                      MyFilterChip(chipLabel: 'Umum'),
                     ],
                   ),
                 ),
@@ -114,9 +114,9 @@ class _LowonganState extends State<PostLowongan> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      myFilterChip(chipLabel: 'Full Time'),
-                      myFilterChip(chipLabel: 'Part Time'),
-                      myFilterChip(chipLabel: 'Internship'),
+                      MyFilterChip(chipLabel: 'Full Time'),
+                      MyFilterChip(chipLabel: 'Part Time'),
+                      MyFilterChip(chipLabel: 'Internship'),
                     ],
                   ),
                 ),
@@ -139,10 +139,10 @@ class _LowonganState extends State<PostLowongan> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      myFilterChip(chipLabel: 'Yogyakarta'),
-                      myFilterChip(chipLabel: 'Bantul'),
-                      myFilterChip(chipLabel: 'Sleman'),
-                      myFilterChip(chipLabel: 'Kulon Progo'),
+                      MyChoiceChip(chipLabel: 'Yogyakarta'),
+                      MyChoiceChip(chipLabel: 'Bantul'),
+                      MyChoiceChip(chipLabel: 'Sleman'),
+                      MyChoiceChip(chipLabel: 'Kulon Progo'),
                     ],
                   ),
                 ),
@@ -294,21 +294,65 @@ class _LowonganState extends State<PostLowongan> {
   void onPressed() {}
 }
 
-class myFilterChip extends StatefulWidget {
+class MyFilterChip extends StatefulWidget {
   final String chipLabel;
 
-  myFilterChip({Key key, this.chipLabel}) : super(key: key);
+  MyFilterChip({Key key, this.chipLabel}) : super(key: key);
 
   @override
-  _myFilterChipState createState() => _myFilterChipState();
+  _MyFilterChipState createState() => _MyFilterChipState();
 }
 
-class _myFilterChipState extends State<myFilterChip> {
+class _MyFilterChipState extends State<MyFilterChip> {
   var _isSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return FilterChip(
+      label: Container(
+        padding: EdgeInsets.all(10),
+        child: Text(widget.chipLabel),
+      ),
+      shadowColor: Colors.transparent,
+      selectedShadowColor: Colors.transparent,
+      labelStyle: TextStyle(
+          color: _isSelected ? Colors.white : Colors.black,
+          fontSize: 16.0,
+          fontWeight: FontWeight.bold),
+      selected: _isSelected,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      side: BorderSide(
+        color: kPrimaryColor,
+        width: 2,
+      ),
+      selectedColor: kPrimaryColor,
+      backgroundColor: Colors.white,
+      onSelected: (isSelected) {
+        setState(() {
+          _isSelected = isSelected;
+        });
+      },
+    );
+  }
+}
+
+class MyChoiceChip extends StatefulWidget {
+  final String chipLabel;
+
+  MyChoiceChip({Key key, this.chipLabel}) : super(key: key);
+
+  @override
+  _MyChoiceChipState createState() => _MyChoiceChipState();
+}
+
+class _MyChoiceChipState extends State<MyChoiceChip> {
+  var _isSelected = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ChoiceChip(
       label: Container(
         padding: EdgeInsets.all(10),
         child: Text(widget.chipLabel),

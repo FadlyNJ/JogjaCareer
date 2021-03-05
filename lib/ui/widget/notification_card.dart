@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jogja_career/constant.dart';
-import 'Notifikasi.dart';
+import 'package:jogja_career/utils/const.dart';
+import 'package:jogja_career/models/notification.dart';
+import 'package:jogja_career/ui/screen/notification_detail_screen.dart';
 
 class NotificationCard extends StatefulWidget {
   @override
@@ -11,60 +12,16 @@ class NotificationCard extends StatefulWidget {
 class _NotificationState extends State<NotificationCard> {
   bool toggle = true;
 
-  final List<Notifikasi> notifikasiList = [
-    Notifikasi(
+  final List<notification> notifikasiList = [
+    notification(
         "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
+    notification(
         "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
+    notification(
         "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
+    notification(
         "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    Notifikasi(
+    notification(
         "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
   ];
 
@@ -76,34 +33,6 @@ class _NotificationState extends State<NotificationCard> {
           itemCount: notifikasiList.length,
           itemBuilder: (BuildContext context, int index) =>
               notifikasiCard(context, index)),
-    );
-  }
-
-  Widget notifikasiDetail(int index, BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: kPrimaryColor,
-        title: Text('Candidate Details'),
-        leading: Container(
-          color: Colors.white,
-          child: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: Navigator.of(context).pop,
-            tooltip: ('Back'),
-          ),
-        ),
-        actions: [
-          Container(
-              color: Colors.white,
-              child: IconButton(
-                  icon: Icon(Icons.share_outlined),
-                  onPressed: Navigator.of(context).pop,
-                  tooltip: ('Share'))),
-        ],
-      ),
-      body: Text('This is Card Number $index'),
     );
   }
 
