@@ -1,14 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jogja_career/utils/const.dart';
-import 'dart:math' as math;
+import 'package:jogja_career/ui/widget/filter_chip.dart';
+import 'package:jogja_career/ui/widget/choice_chip.dart';
 
-class PostJob extends StatefulWidget {
+class BodyPostJob extends StatefulWidget with PreferredSizeWidget {
   @override
-  _PostJobState createState() => _PostJobState();
+  _BodyPostJobState createState() => _BodyPostJobState();
+
+  @override
+  Size get preferredSize => Size.fromHeight(60);
 }
 
-class _PostJobState extends State<PostJob> {
+class _BodyPostJobState extends State<BodyPostJob> {
+  @override
+  Widget build(BuildContext context) {
+    return _addJobBody();
+  }
+
+  var isClicked = true;
   String _valCategory;
   List _myCategory = [
     "Informasi dan Teknologi",
@@ -16,14 +26,6 @@ class _PostJobState extends State<PostJob> {
     "Akuntansi",
     "Keamanan dan Kenyamanan",
   ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBarAddJob(),
-      body: _addJobBody(),
-    );
-  }
 
   Widget _addJobBody() {
     return GestureDetector(
@@ -56,18 +58,6 @@ class _PostJobState extends State<PostJob> {
                       Radius.circular(8),
                     ),
                   ),
-                  errorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red, width: 2),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red, width: 2),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
                 ),
               ),
               SizedBox(
@@ -88,10 +78,10 @@ class _PostJobState extends State<PostJob> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      MyFilterChip(chipLabel: 'SMA'),
-                      MyFilterChip(chipLabel: 'Diploma'),
-                      MyFilterChip(chipLabel: 'Sarjana'),
-                      MyFilterChip(chipLabel: 'Umum'),
+                      CustomFilterChip(chipLabel: 'SMA'),
+                      CustomFilterChip(chipLabel: 'Diploma'),
+                      CustomFilterChip(chipLabel: 'Sarjana'),
+                      CustomFilterChip(chipLabel: 'Umum'),
                     ],
                   ),
                 ),
@@ -114,9 +104,9 @@ class _PostJobState extends State<PostJob> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      MyFilterChip(chipLabel: 'Full Time'),
-                      MyFilterChip(chipLabel: 'Part Time'),
-                      MyFilterChip(chipLabel: 'Internship'),
+                      CustomFilterChip(chipLabel: 'Full Time'),
+                      CustomFilterChip(chipLabel: 'Part Time'),
+                      CustomFilterChip(chipLabel: 'Internship'),
                     ],
                   ),
                 ),
@@ -139,10 +129,10 @@ class _PostJobState extends State<PostJob> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      MyChoiceChip(chipLabel: 'Yogyakarta'),
-                      MyChoiceChip(chipLabel: 'Bantul'),
-                      MyChoiceChip(chipLabel: 'Sleman'),
-                      MyChoiceChip(chipLabel: 'Kulon Progo'),
+                      CustomChoiceChip(chipLabel: 'Yogyakarta'),
+                      CustomChoiceChip(chipLabel: 'Bantul'),
+                      CustomChoiceChip(chipLabel: 'Sleman'),
+                      CustomChoiceChip(chipLabel: 'Kulon Progo'),
                     ],
                   ),
                 ),
@@ -202,18 +192,6 @@ class _PostJobState extends State<PostJob> {
                             Radius.circular(8),
                           ),
                         ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red, width: 2),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),
                       ),
                     ),
                   ),
@@ -223,15 +201,15 @@ class _PostJobState extends State<PostJob> {
                       width: double.infinity,
                       margin: EdgeInsets.only(left: 10),
                       decoration: BoxDecoration(
-                        color: Color(0xffe6ecf4),
+                        color: isClicked ? Color(0xffe6ecf4) : kPrimaryColor,
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                       ),
                       child: TextButton(
-                        onPressed: onPressed,
+                        onPressed: () => setState(() => isClicked = !isClicked),
                         child: Text(
-                          'Sembunyikan',
+                          isClicked ? 'Sembunyikan' : 'Perlihatkan',
                           style: TextStyle(
-                            color: Colors.black,
+                            color: isClicked ? Colors.black : Colors.white,
                             fontSize: 16,
                           ),
                         ),
@@ -266,118 +244,39 @@ class _PostJobState extends State<PostJob> {
     );
   }
 
-  Widget _appBarAddJob() {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(60),
-      child: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: kAppbarColor,
-        automaticallyImplyLeading: false,
-        title: Text('Post Lowongan',
-            style: TextStyle(
-              fontSize: 25,
-            )),
-        actions: [
-          Transform.rotate(
-            angle: 45 * math.pi / 180,
-            child: IconButton(
-                icon: Icon(Icons.add),
-                tooltip: ('Close'),
-                onPressed: Navigator.of(context).pop),
+  void onPressed() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) {
+        return Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(60),
+            child: AppBar(
+              title: Text(
+                'Ketentuan',
+                style: TextStyle(fontSize: 25),
+              ),
+              backgroundColor: kAppbarColor,
+              elevation: 0,
+              centerTitle: true,
+            ),
           ),
-        ],
-      ),
-    );
-  }
-
-  void onPressed() {}
-}
-
-class MyFilterChip extends StatefulWidget {
-  final String chipLabel;
-
-  MyFilterChip({Key key, this.chipLabel}) : super(key: key);
-
-  @override
-  _MyFilterChipState createState() => _MyFilterChipState();
-}
-
-class _MyFilterChipState extends State<MyFilterChip> {
-  var _isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return FilterChip(
-      label: Container(
-        padding: EdgeInsets.all(10),
-        child: Text(widget.chipLabel),
-      ),
-      shadowColor: Colors.transparent,
-      selectedShadowColor: Colors.transparent,
-      labelStyle: TextStyle(
-          color: _isSelected ? Colors.white : Colors.black,
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold),
-      selected: _isSelected,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      side: BorderSide(
-        color: kPrimaryColor,
-        width: 2,
-      ),
-      selectedColor: kPrimaryColor,
-      backgroundColor: Colors.white,
-      onSelected: (isSelected) {
-        setState(() {
-          _isSelected = isSelected;
-        });
+          body: ListView(
+            physics: BouncingScrollPhysics(),
+            children: [
+              Image.network(
+                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
+              Image.network(
+                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
+              Image.network(
+                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
+              Image.network(
+                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
+              Image.network(
+                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
+            ],
+          ),
+        );
       },
-    );
-  }
-}
-
-class MyChoiceChip extends StatefulWidget {
-  final String chipLabel;
-
-  MyChoiceChip({Key key, this.chipLabel}) : super(key: key);
-
-  @override
-  _MyChoiceChipState createState() => _MyChoiceChipState();
-}
-
-class _MyChoiceChipState extends State<MyChoiceChip> {
-  var _isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return ChoiceChip(
-      label: Container(
-        padding: EdgeInsets.all(10),
-        child: Text(widget.chipLabel),
-      ),
-      shadowColor: Colors.transparent,
-      selectedShadowColor: Colors.transparent,
-      labelStyle: TextStyle(
-          color: _isSelected ? Colors.white : Colors.black,
-          fontSize: 16.0,
-          fontWeight: FontWeight.bold),
-      selected: _isSelected,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      side: BorderSide(
-        color: kPrimaryColor,
-        width: 2,
-      ),
-      selectedColor: kPrimaryColor,
-      backgroundColor: Colors.white,
-      onSelected: (isSelected) {
-        setState(() {
-          _isSelected = isSelected;
-        });
-      },
-    );
+    ));
   }
 }

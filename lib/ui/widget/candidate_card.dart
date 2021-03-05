@@ -106,9 +106,6 @@ class _CandidateCardState extends State<CandidateCard> {
                       style: TextStyle(fontSize: 16),
                     ),
                     SizedBox(height: 4),
-
-                    ///
-                    /// you didn't even wash your hand
                     Text(candidate.candidateSkills,
                         style:
                             TextStyle(fontSize: 12, color: Color(0xffc1cbd6)),
