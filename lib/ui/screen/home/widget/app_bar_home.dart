@@ -20,7 +20,7 @@ class _AppBarHomeState extends State<AppBarHome> {
     return AppBar(
       elevation: 0,
       centerTitle: true,
-      backgroundColor: kAppbarColor,
+      backgroundColor: kLightBlue,
       title: Text('Beranda',
           style: Theme.of(context).textTheme.headline5.copyWith(
                 fontWeight: FontWeight.bold,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jogja_career/utils/const.dart';
 import 'package:jogja_career/models/candidate.dart';
-import 'package:jogja_career/ui/screen/candidate_detail_screen.dart';
+import 'package:jogja_career/ui/screen/candidate_details/candidate_detail_screen.dart';
 
 class CandidateCard extends StatefulWidget {
   @override
@@ -12,19 +12,6 @@ class CandidateCard extends StatefulWidget {
 class _CandidateCardState extends State<CandidateCard> {
   List<bool> selected = [];
 
-  final List<candidate> candidateList = [
-    candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-    candidate("Mobile App Developer", "Fadly Nugraha Jati",
-        "Java, Dart, Flutter, Kotlin", "Tersedia"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +19,7 @@ class _CandidateCardState extends State<CandidateCard> {
         padding: EdgeInsets.only(
             top: kDefaultPadding * 0.75, bottom: kDefaultPadding * 0.75),
         physics: BouncingScrollPhysics(),
-        itemCount: candidateList.length,
+        itemCount: mockCandidate.length,
         itemBuilder: (BuildContext context, int index) {
           return candidateCard(context, index);
         },
@@ -41,7 +28,7 @@ class _CandidateCardState extends State<CandidateCard> {
   }
 
   Widget candidateCard(BuildContext context, int index) {
-    final candidate = candidateList[index];
+    final candidate = mockCandidate[index];
     selected.add(true);
     return new GestureDetector(
       onTap: () {
@@ -50,7 +37,7 @@ class _CandidateCardState extends State<CandidateCard> {
           MaterialPageRoute<void>(
             builder: (BuildContext context) {
               return Scaffold(
-                body: candidateDetail(index, context),
+                body: CandidateDetail(),
               );
             },
           ),

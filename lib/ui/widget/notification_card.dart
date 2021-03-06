@@ -12,32 +12,19 @@ class NotificationCard extends StatefulWidget {
 class _NotificationState extends State<NotificationCard> {
   bool toggle = true;
 
-  final List<notification> notifikasiList = [
-    notification(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    notification(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    notification(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    notification(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-    notification(
-        "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: new ListView.builder(
           physics: BouncingScrollPhysics(),
-          itemCount: notifikasiList.length,
+          itemCount: mockNotification.length,
           itemBuilder: (BuildContext context, int index) =>
               notifikasiCard(context, index)),
     );
   }
 
   Widget notifikasiCard(BuildContext context, int index) {
-    final notifikasi = notifikasiList[index];
+    final notifikasi = mockNotification[index];
     final job = notifikasi.notificationJob;
     final date = notifikasi.notificationDate;
     return new GestureDetector(

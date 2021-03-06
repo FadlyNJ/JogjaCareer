@@ -23,7 +23,7 @@ class _AppBarPostJobState extends State<AppBarPostJob> {
       child: AppBar(
         elevation: 0,
         centerTitle: true,
-        backgroundColor: kAppbarColor,
+        backgroundColor: kLightBlue,
         automaticallyImplyLeading: false,
         title: Text('Post Lowongan',
             style: TextStyle(

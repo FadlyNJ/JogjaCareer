@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jogja_career/utils/const.dart';
-import 'file:///D:/AndroidStudioProjects/jogja_career/lib/ui/screen/post_job/post_job_screen.dart';
+import 'package:jogja_career/ui/screen/post_job/post_job_screen.dart';
 
 class FABPostJob extends StatefulWidget {
   @override
@@ -34,5 +34,4 @@ class _FABPostJobState extends State<FABPostJob> {
       ),
     );
   }
-
 }

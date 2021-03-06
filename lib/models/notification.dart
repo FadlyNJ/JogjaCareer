@@ -7,3 +7,16 @@ class notification {
   notification(this.notificationName, this.notificationJob,
       this.notificationImage, this.notificationDate);
 }
+
+List<notification> mockNotification = [
+  notification(
+      "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+  notification(
+      "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+  notification(
+      "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+  notification(
+      "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+  notification(
+      "Fadly Nugraha Jati", "Mobile App Developer", "IMAGE", "1 hari lalu"),
+];

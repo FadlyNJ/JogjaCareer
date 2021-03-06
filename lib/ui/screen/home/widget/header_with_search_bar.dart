@@ -14,11 +14,9 @@ class _HeaderSearchBarState extends State<HeaderSearchBar> {
   }
 
   Widget _headerSearchBar() {
-    Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.all(kDefaultPadding),
-      height: size.height * 0.13,
-      color: kAppbarColor,
+      color: kLightBlue,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[

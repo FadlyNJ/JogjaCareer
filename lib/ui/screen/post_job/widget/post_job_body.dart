@@ -255,7 +255,7 @@ class _BodyPostJobState extends State<BodyPostJob> {
                 'Ketentuan',
                 style: TextStyle(fontSize: 25),
               ),
-              backgroundColor: kAppbarColor,
+              backgroundColor: kLightBlue,
               elevation: 0,
               centerTitle: true,
             ),
