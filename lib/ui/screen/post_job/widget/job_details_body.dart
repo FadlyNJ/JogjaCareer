@@ -129,7 +129,6 @@ class _BodyJobDetailsState extends State<BodyJobDetails> {
             SizedBox(height: 20),
             Expanded(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 height: double.infinity,
                 decoration: BoxDecoration(
@@ -137,8 +136,11 @@ class _BodyJobDetailsState extends State<BodyJobDetails> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: TextField(
-                  maxLines: 20,
+                  scrollPhysics: BouncingScrollPhysics(),
+                  maxLines: null,
                   decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     hintStyle: TextStyle(
                       color: kGray3,
                       fontSize: 16,
