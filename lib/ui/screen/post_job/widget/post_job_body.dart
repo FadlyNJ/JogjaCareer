@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jogja_career/ui/screen/post_job/job_details_screen.dart';
 import 'package:jogja_career/utils/const.dart';
-import 'package:jogja_career/ui/widget/filter_chip.dart';
 import 'package:jogja_career/ui/widget/choice_chip.dart';
 
-class BodyPostJob extends StatefulWidget with PreferredSizeWidget {
+class BodyPostJob extends StatefulWidget {
   @override
   _BodyPostJobState createState() => _BodyPostJobState();
-
-  @override
-  Size get preferredSize => Size.fromHeight(60);
 }
 
 class _BodyPostJobState extends State<BodyPostJob> {
   @override
   Widget build(BuildContext context) {
-    return _addJobBody();
+    return _postJobBody();
   }
 
   var isClicked = true;
@@ -27,13 +24,13 @@ class _BodyPostJobState extends State<BodyPostJob> {
     "Keamanan dan Kenyamanan",
   ];
 
-  Widget _addJobBody() {
+  Widget _postJobBody() {
     return GestureDetector(
       onTap: () {
         FocusManager.instance.primaryFocus.unfocus();
       },
       child: ListView(
-        padding: EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 40),
+        padding: EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
         physics: BouncingScrollPhysics(),
         children: [
           Column(
@@ -78,10 +75,10 @@ class _BodyPostJobState extends State<BodyPostJob> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      CustomFilterChip(chipLabel: 'SMA'),
-                      CustomFilterChip(chipLabel: 'Diploma'),
-                      CustomFilterChip(chipLabel: 'Sarjana'),
-                      CustomFilterChip(chipLabel: 'Umum'),
+                      CustomChoiceChip(chipLabel: 'SMA'),
+                      CustomChoiceChip(chipLabel: 'Diploma'),
+                      CustomChoiceChip(chipLabel: 'Sarjana'),
+                      CustomChoiceChip(chipLabel: 'Umum'),
                     ],
                   ),
                 ),
@@ -104,9 +101,9 @@ class _BodyPostJobState extends State<BodyPostJob> {
                     spacing: 10.0,
                     runSpacing: 10.0,
                     children: [
-                      CustomFilterChip(chipLabel: 'Full Time'),
-                      CustomFilterChip(chipLabel: 'Part Time'),
-                      CustomFilterChip(chipLabel: 'Internship'),
+                      CustomChoiceChip(chipLabel: 'Full Time'),
+                      CustomChoiceChip(chipLabel: 'Part Time'),
+                      CustomChoiceChip(chipLabel: 'Internship'),
                     ],
                   ),
                 ),
@@ -195,27 +192,33 @@ class _BodyPostJobState extends State<BodyPostJob> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 10),
                   Flexible(
                     child: Container(
-                      height: 60,
-                      width: double.infinity,
-                      margin: EdgeInsets.only(left: 10),
-                      decoration: BoxDecoration(
-                        color: isClicked ? Color(0xffe6ecf4) : kPrimaryColor,
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),
-                      child: TextButton(
-                        onPressed: () => setState(() => isClicked = !isClicked),
-                        child: Text(
-                          isClicked ? 'Sembunyikan' : 'Perlihatkan',
-                          style: TextStyle(
-                            color: isClicked ? Colors.black : Colors.white,
-                            fontSize: 16,
-                          ),
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
                         ),
-                      ),
-                    ),
-                  )
+                        child: Material(
+                          color: isClicked ? Color(0xffe6ecf4) : kPrimaryColor,
+                          borderRadius: BorderRadius.circular(8),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: () => setState(() => isClicked = !isClicked),
+                            child: Center(
+                              child: Text(
+                                isClicked ? 'Sembunyikan' : 'Perlihatkan',
+                                style: TextStyle(
+                                    color:
+                                        isClicked ? Colors.black : Colors.white,
+                                    fontSize: 16,
+                                    fontWeight:
+                                        isClicked ? null : FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ),
                 ],
               ),
               SizedBox(height: 40),
@@ -223,16 +226,22 @@ class _BodyPostJobState extends State<BodyPostJob> {
                 height: 60,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: kPrimaryColor,
                   borderRadius: BorderRadius.all(Radius.circular(8)),
                 ),
-                child: TextButton(
-                  onPressed: onPressed,
-                  child: Text(
-                    'Selanjutnya',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
+                child: Material(
+                  color: kPrimaryColor,
+                  borderRadius: BorderRadius.circular(8),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(8),
+                    onTap: onPressed,
+                    child: Center(
+                      child: Text(
+                        'Selanjutnya',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
@@ -247,35 +256,7 @@ class _BodyPostJobState extends State<BodyPostJob> {
   void onPressed() {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) {
-        return Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(60),
-            child: AppBar(
-              title: Text(
-                'Ketentuan',
-                style: TextStyle(fontSize: 25),
-              ),
-              backgroundColor: kLightBlue,
-              elevation: 0,
-              centerTitle: true,
-            ),
-          ),
-          body: ListView(
-            physics: BouncingScrollPhysics(),
-            children: [
-              Image.network(
-                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
-              Image.network(
-                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
-              Image.network(
-                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
-              Image.network(
-                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
-              Image.network(
-                  'https://www.petanikode.com/img/flutter/flutter-sqr.png'),
-            ],
-          ),
-        );
+        return DetailsJob();
       },
     ));
   }

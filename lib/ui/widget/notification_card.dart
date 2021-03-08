@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jogja_career/ui/screen/candidate_details/candidate_detail_screen.dart';
 import 'package:jogja_career/utils/const.dart';
 import 'package:jogja_career/models/notification.dart';
 import 'package:jogja_career/ui/screen/notification_detail_screen.dart';
@@ -27,30 +28,30 @@ class _NotificationState extends State<NotificationCard> {
     final notifikasi = mockNotification[index];
     final job = notifikasi.notificationJob;
     final date = notifikasi.notificationDate;
-    return new GestureDetector(
-      onTap: () {
-        print(index);
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (BuildContext context) {
-              return Scaffold(
-                body: notifikasiDetail(index, context),
-              );
-            },
-          ),
-        );
-      },
-      child: Card(
-        margin: EdgeInsets.zero,
-        elevation: 0,
+    return Card(
+      margin: EdgeInsets.zero,
+      elevation: 0,
+      child: InkWell(
+        highlightColor: kPrimaryColor,
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) {
+                return Scaffold(
+                  body: CandidateDetail(),
+                );
+              },
+            ),
+          );
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: 10, left: 30, right: 10),
-              width: 80,
-              height: 80,
+              margin: EdgeInsets.only(top: 10, left: 20, right: 10),
+              width: 100,
+              height: 100,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: kPrimaryColor, width: 1.5)),

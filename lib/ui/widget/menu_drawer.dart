@@ -50,43 +50,52 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 ],
               ),
             ),
-            ListTile(
-              title: Text(
-                'Kebijakan',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            InkWell(
+              highlightColor: kLightBlue,
               onTap: () {
                 _closeDrawer();
               },
+              child: ListTile(
+                title: Text(
+                  'Kebijakan',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             Divider(thickness: 1),
-            ListTile(
-              title: Text(
-                'Pengaturan',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            InkWell(
+              highlightColor: kLightBlue,
               onTap: () {
                 _closeDrawer();
               },
+              child: ListTile(
+                title: Text(
+                  'Pengaturan',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             Divider(thickness: 1),
-            ListTile(
-              title: Text(
-                'Update Aplikasi',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            InkWell(
+              highlightColor: kLightBlue,
               onTap: () {
                 _closeDrawer();
               },
+              child: ListTile(
+                title: Text(
+                  'Update Aplikasi',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             Divider(thickness: 1),
           ],

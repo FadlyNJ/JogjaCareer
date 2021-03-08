@@ -30,31 +30,32 @@ class _CandidateCardState extends State<CandidateCard> {
   Widget candidateCard(BuildContext context, int index) {
     final candidate = mockCandidate[index];
     selected.add(true);
-    return new GestureDetector(
-      onTap: () {
-        print(index);
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (BuildContext context) {
-              return Scaffold(
-                body: CandidateDetail(),
-              );
-            },
-          ),
-        );
-      },
-      child: Container(
-        height: 160,
-        padding: const EdgeInsets.only(
-            left: kDefaultPadding,
-            right: kDefaultPadding,
-            bottom: kDefaultPadding * 0.25,
-            top: kDefaultPadding * 0.25),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            side: BorderSide(width: 1.5, color: kPrimaryColor),
-          ),
+    return Container(
+      height: 160,
+      padding: const EdgeInsets.only(
+          left: kDefaultPadding,
+          right: kDefaultPadding,
+          bottom: kDefaultPadding * 0.25,
+          top: kDefaultPadding * 0.25),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          side: BorderSide(width: 1.5, color: kPrimaryColor),
+        ),
+        child: InkWell(
+          highlightColor: kLightBlue,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    body: CandidateDetail(),
+                  );
+                },
+              ),
+            );
+          },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.max,
