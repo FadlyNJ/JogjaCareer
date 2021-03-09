@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jogja_career/ui/screen/home/home_screen.dart';
 import 'package:jogja_career/ui/screen/new_job//new_job_screen.dart';
 import 'package:jogja_career/utils/const.dart';
 import 'package:jogja_career/ui/widget/choice_chip.dart';
@@ -546,10 +547,10 @@ class _BodyJobDetailsState extends State<BodyJobDetails> {
 
 class BodyUploadJob extends StatefulWidget {
   @override
-  _BodyJobUpload createState() => _BodyJobUpload();
+  _BodyJobUploadState createState() => _BodyJobUploadState();
 }
 
-class _BodyJobUpload extends State<BodyUploadJob> {
+class _BodyJobUploadState extends State<BodyUploadJob> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -729,5 +730,140 @@ class _BodyJobUpload extends State<BodyUploadJob> {
     );
   }
 
-  void onPressed() {}
+  void onPressed() {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) {
+        return BodyLoadingUpload();
+      },
+    ));
+  }
+}
+
+class BodyLoadingUpload extends StatefulWidget {
+  @override
+  _BodyLoadingUploadState createState() => _BodyLoadingUploadState();
+}
+
+class _BodyLoadingUploadState extends State<BodyLoadingUpload> {
+  bool _isLoading = false;
+  var onSec = const Duration(seconds: 15);
+
+  @override
+  void initState() {
+    super.initState();
+    dataLoadFunction(); // this function gets called
+  }
+
+  dataLoadFunction() async {
+    setState(() {
+      _isLoading = true;
+    });
+    Future.delayed(Duration(seconds: 10), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _isLoading
+        ? Scaffold(
+            body: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding:
+                    EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: SizedBox(
+                        height: 200,
+                        width: 200,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(kGreen),
+                          backgroundColor: kLightBlue,
+                          strokeWidth: 40,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 60),
+                    Text('Sedang Mengupload Lowongan',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 10),
+                    Text(
+                      'Mohon Tunggu Sebentar',
+                      style: TextStyle(color: kGray2, fontSize: 20),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          )
+        : Scaffold(
+            body: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: kWhite,
+              ),
+              child: Padding(
+                padding:
+                    EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text('Lowongan Terposting',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold)),
+                    Icon(
+                      Icons.check_circle,
+                      size: 300,
+                      color: kGreen,
+                    ),
+                    Text('Lowongan Terposting',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold)),
+                    Container(
+                      height: 60,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                      child: Material(
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(8),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(8),
+                          onTap: backToHome,
+                          child: Center(
+                            child: Text(
+                              'Kembali ke Beranda',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+  }
+
+  void backToHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Home()),
+        (Route<dynamic> route) => false);
+  }
 }
