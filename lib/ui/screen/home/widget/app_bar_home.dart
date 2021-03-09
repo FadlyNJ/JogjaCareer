@@ -2,21 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jogja_career/utils/const.dart';
 
-class AppBarHome extends StatefulWidget with PreferredSizeWidget {
-  @override
-  _AppBarHomeState createState() => _AppBarHomeState();
-
+class AppBarHome extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(60);
-}
 
-class _AppBarHomeState extends State<AppBarHome> {
   @override
   Widget build(BuildContext context) {
-    return _appBarHome();
-  }
-
-  Widget _appBarHome() {
     return AppBar(
       elevation: 0,
       centerTitle: true,

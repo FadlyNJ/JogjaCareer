@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:jogja_career/ui/screen/candidate_details/candidate_detail_screen.dart';
 import 'package:jogja_career/utils/const.dart';
 import 'package:jogja_career/models/notification.dart';
-import 'package:jogja_career/ui/screen/notification_detail_screen.dart';
 
 class NotificationCard extends StatefulWidget {
   @override

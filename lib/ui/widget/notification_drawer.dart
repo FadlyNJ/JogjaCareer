@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jogja_career/utils/const.dart';
-import 'dart:math' as math;
 
 import 'package:jogja_career/ui/widget/notification_card.dart';
 
@@ -34,19 +33,16 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
                     'Notifikasi',
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.headline4.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   Spacer(),
-                  Transform.rotate(
-                    angle: 45 * math.pi / 180,
-                    child: IconButton(
-                        icon: Icon(Icons.add),
-                        iconSize: 35,
-                        tooltip: ('Tutup'),
-                        onPressed: _closeDrawer),
-                  ),
+                  IconButton(
+                      icon: Icon(Icons.clear),
+                      iconSize: 30,
+                      tooltip: ('Tutup'),
+                      onPressed: _closeDrawer),
                 ],
               ),
             ),
@@ -57,8 +53,7 @@ class _NotificationDrawerState extends State<NotificationDrawer> {
     );
   }
 
-  void _closeDrawer(){
+  void _closeDrawer() {
     Navigator.of(context).pop();
   }
-
 }

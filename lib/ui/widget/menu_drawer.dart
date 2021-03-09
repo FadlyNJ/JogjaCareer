@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jogja_career/utils/const.dart';
-import 'dart:math' as math;
 
 class MenuDrawer extends StatefulWidget {
   @override
@@ -39,14 +38,11 @@ class _MenuDrawerState extends State<MenuDrawer> {
                         ),
                   ),
                   Spacer(),
-                  Transform.rotate(
-                    angle: 45 * math.pi / 180,
-                    child: IconButton(
-                        icon: Icon(Icons.add),
-                        iconSize: 35,
-                        tooltip: ('Tutup'),
-                        onPressed: _closeDrawer),
-                  ),
+                  IconButton(
+                      icon: Icon(Icons.clear),
+                      iconSize: 30,
+                      tooltip: ('Tutup'),
+                      onPressed: _closeDrawer),
                 ],
               ),
             ),

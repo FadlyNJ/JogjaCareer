@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jogja_career/utils/const.dart';
-import 'package:jogja_career/ui/screen/post_job/post_job_screen.dart';
+import 'package:jogja_career/ui/screen/new_job//new_job_screen.dart';
 
 class FABPostJob extends StatefulWidget {
   @override

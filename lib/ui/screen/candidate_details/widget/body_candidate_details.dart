@@ -216,56 +216,58 @@ class _BodyCandidateDetailsState extends State<BodyCandidateDetails> {
           ],
         ),
         SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Text(
-              'Jabatan',
-              style: TextStyle(color: kBlack),
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(8)),
-              child: Text('Mobile App Developer'),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Tempat Kerja',
-              style: TextStyle(color: kBlack),
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(8)),
-              child: Text('Paylabs'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Deskripsi Pekerjaan',
-              style: TextStyle(
-                color: kBlack,
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text(
+                'Jabatan',
+                style: TextStyle(color: kBlack),
               ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-              decoration: BoxDecoration(
-                  color: kWhite, borderRadius: BorderRadius.circular(8)),
-              child: Expanded(
-                child: Text(
-                  '- Collaborate with Many Developing',
-                  maxLines: 20,
-                  overflow: TextOverflow.clip,
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                decoration: BoxDecoration(
+                    color: kWhite, borderRadius: BorderRadius.circular(8)),
+                child: Text('Mobile App Developer'),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Tempat Kerja',
+                style: TextStyle(color: kBlack),
+              ),
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                decoration: BoxDecoration(
+                    color: kWhite, borderRadius: BorderRadius.circular(8)),
+                child: Text('Paylabs'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Deskripsi Pekerjaan',
+                style: TextStyle(
+                  color: kBlack,
                 ),
               ),
-            ),
-          ],
+              SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                decoration: BoxDecoration(
+                    color: kWhite, borderRadius: BorderRadius.circular(8)),
+                child: Expanded(
+                  child: Text(
+                    '- Collaborate with Many Developing',
+                    maxLines: 20,
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

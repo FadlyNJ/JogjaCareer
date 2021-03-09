@@ -3,21 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:jogja_career/utils/const.dart';
 
-class AppBarCandidateDetails extends StatefulWidget with PreferredSizeWidget {
-  @override
-  _AppBarCandidateDetailsState createState() => _AppBarCandidateDetailsState();
-
+class AppBarCandidateDetails extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(60);
-}
 
-class _AppBarCandidateDetailsState extends State<AppBarCandidateDetails> {
   @override
   Widget build(BuildContext context) {
-    return appBarCandidateDetails();
-  }
-
-  Widget appBarCandidateDetails() {
     return AppBar(
       elevation: 0,
       backgroundColor: kPrimaryColor,
@@ -54,8 +45,8 @@ class _AppBarCandidateDetailsState extends State<AppBarCandidateDetails> {
             ),
             IconButton(
               icon: Icon(Icons.share_outlined),
-              onPressed: Navigator.of(context).pop,
-              tooltip: ('Back'),
+              onPressed: onPressed,
+              tooltip: ('Share'),
               iconSize: 30,
             ),
           ],
@@ -63,4 +54,6 @@ class _AppBarCandidateDetailsState extends State<AppBarCandidateDetails> {
       ],
     );
   }
+
+  void onPressed() {}
 }
