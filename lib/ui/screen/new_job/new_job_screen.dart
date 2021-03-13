@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jogja_career/ui/screen/new_job//widget/app_bar_new_job.dart';
-import 'package:jogja_career/ui/screen/new_job//widget/new_job_body.dart';
+import 'package:jogja_career/ui/screen/new_job/widget/new_job_body.dart';
+import 'package:jogja_career/ui/screen/new_job/widget/app_bar_new_job.dart';
 
 class PostJob extends StatefulWidget {
   @override
@@ -33,17 +33,16 @@ class _DetailsJobState extends State<DetailsJob> {
   }
 }
 
-class UploadJob extends StatefulWidget {
+class LoadingUpload extends StatefulWidget {
   @override
-  _UploadJobState createState() => _UploadJobState();
+  _LoadingUploadState createState() => _LoadingUploadState();
 }
 
-class _UploadJobState extends State<UploadJob> {
+class _LoadingUploadState extends State<LoadingUpload> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarUploadJob(),
-      body: BodyUploadJob(),
+      body: BodyLoadingUpload(),
     );
   }
 }

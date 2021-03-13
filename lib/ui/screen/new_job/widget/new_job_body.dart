@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jogja_career/ui/screen/home/home_screen.dart';
-import 'package:jogja_career/ui/screen/new_job//new_job_screen.dart';
+import 'package:jogja_career/ui/screen/new_job/new_job_screen.dart';
 import 'package:jogja_career/utils/const.dart';
 import 'package:jogja_career/ui/widget/choice_chip.dart';
 import 'package:jogja_career/utils/line_dash.dart';
@@ -520,200 +520,6 @@ class _BodyJobDetailsState extends State<BodyJobDetails> {
                   onTap: onPressed,
                   child: Center(
                     child: Text(
-                      'Selanjutnya',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void onPressed() {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) {
-        return UploadJob();
-      },
-    ));
-  }
-}
-
-class BodyUploadJob extends StatefulWidget {
-  @override
-  _BodyJobUploadState createState() => _BodyJobUploadState();
-}
-
-class _BodyJobUploadState extends State<BodyUploadJob> {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Padding(
-        padding: EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 65,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 30,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                        ),
-                        child: Text(
-                          '1',
-                          style: TextStyle(
-                            color: kWhite,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Post Lowongan',
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 15),
-                  width: 60,
-                  child: LineDash(
-                    color: kGray3,
-                  ),
-                ),
-                Container(
-                  width: 65,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 30,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                        ),
-                        child: Text(
-                          '2',
-                          style: TextStyle(
-                            color: kWhite,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Ketentuan',
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 15),
-                  width: 60,
-                  child: LineDash(
-                    color: kGray3,
-                  ),
-                ),
-                Container(
-                  width: 65,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 30,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                        ),
-                        child: Text(
-                          '3',
-                          style: TextStyle(
-                            color: kWhite,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Selesai',
-                        style: TextStyle(
-                          color: kPrimaryColor,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  color: kGray4,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: TextField(
-                  scrollPhysics: BouncingScrollPhysics(),
-                  maxLines: null,
-                  decoration: InputDecoration(
-                    contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    hintStyle: TextStyle(
-                      color: kGray3,
-                      fontSize: 16,
-                    ),
-                    border: InputBorder.none,
-                    hintText:
-                        ('Tulis deskripsi pekerjaan, syarat dan ketentuan...'),
-                  ),
-                  textAlign: TextAlign.start,
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              height: 60,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-              ),
-              child: Material(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(8),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(8),
-                  onTap: onPressed,
-                  child: Center(
-                    child: Text(
                       'Selesai',
                       style: TextStyle(
                           color: Colors.white,
@@ -733,7 +539,7 @@ class _BodyJobUploadState extends State<BodyUploadJob> {
   void onPressed() {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) {
-        return BodyLoadingUpload();
+        return LoadingUpload();
       },
     ));
   }
@@ -744,14 +550,28 @@ class BodyLoadingUpload extends StatefulWidget {
   _BodyLoadingUploadState createState() => _BodyLoadingUploadState();
 }
 
-class _BodyLoadingUploadState extends State<BodyLoadingUpload> {
+class _BodyLoadingUploadState extends State<BodyLoadingUpload>
+    with TickerProviderStateMixin {
   bool _isLoading = false;
-  var onSec = const Duration(seconds: 15);
+  AnimationController animationController;
+
+  Future<bool> _onWillPop() async {
+    return false;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    animationController.dispose();
+  }
 
   @override
   void initState() {
+    animationController =
+        AnimationController(duration: new Duration(seconds: 5), vsync: this);
+    animationController.repeat();
     super.initState();
-    dataLoadFunction(); // this function gets called
+    dataLoadFunction();
   }
 
   dataLoadFunction() async {
@@ -767,98 +587,102 @@ class _BodyLoadingUploadState extends State<BodyLoadingUpload> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? Scaffold(
-            body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding:
-                    EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SizedBox(
-                        height: 200,
-                        width: 200,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(kGreen),
-                          backgroundColor: kLightBlue,
-                          strokeWidth: 40,
+    return WillPopScope(
+      child: _isLoading
+          ? Scaffold(
+              body: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: SizedBox(
+                          height: 200,
+                          width: 200,
+                          child: CircularProgressIndicator(
+                            valueColor: animationController.drive(ColorTween(
+                                begin: kGreen, end: Color(0xff0dbea3))),
+                            backgroundColor: kLightBlue,
+                            strokeWidth: 40,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 60),
-                    Text('Sedang Mengupload Lowongan',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 10),
-                    Text(
-                      'Mohon Tunggu Sebentar',
-                      style: TextStyle(color: kGray2, fontSize: 20),
-                    ),
-                  ],
+                      SizedBox(height: 60),
+                      Text('Sedang Mengupload Lowongan',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
+                      SizedBox(height: 10),
+                      Text(
+                        'Mohon Tunggu Sebentar',
+                        style: TextStyle(color: kGray2, fontSize: 20),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
-        : Scaffold(
-            body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: kWhite,
-              ),
-              child: Padding(
-                padding:
-                    EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text('Lowongan Terposting',
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.bold)),
-                    Icon(
-                      Icons.check_circle,
-                      size: 300,
-                      color: kGreen,
-                    ),
-                    Text('Lowongan Terposting',
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.bold)),
-                    Container(
-                      height: 60,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
+            )
+          : Scaffold(
+              body: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: kWhite,
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(top: 20, right: 20, left: 20, bottom: 30),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text('Lowongan Terposting',
+                          style: TextStyle(
+                              fontSize: 28, fontWeight: FontWeight.bold)),
+                      Icon(
+                        Icons.check_circle,
+                        size: 300,
+                        color: kGreen,
                       ),
-                      child: Material(
-                        color: kPrimaryColor,
-                        borderRadius: BorderRadius.circular(8),
-                        child: InkWell(
+                      Text('Lowongan Terposting',
+                          style: TextStyle(
+                              fontSize: 28, fontWeight: FontWeight.bold)),
+                      Container(
+                        height: 60,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                        child: Material(
+                          color: kPrimaryColor,
                           borderRadius: BorderRadius.circular(8),
-                          onTap: backToHome,
-                          child: Center(
-                            child: Text(
-                              'Kembali ke Beranda',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(8),
+                            onTap: backToHome,
+                            child: Center(
+                              child: Text(
+                                'Kembali ke Beranda',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          );
+      onWillPop: _onWillPop,
+    );
   }
 
   void backToHome() {

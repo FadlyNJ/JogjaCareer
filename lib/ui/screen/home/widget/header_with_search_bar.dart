@@ -10,54 +10,57 @@ class HeaderSearchBar extends StatefulWidget {
 class _HeaderSearchBarState extends State<HeaderSearchBar> {
   @override
   Widget build(BuildContext context) {
-    return _headerSearchBar();
-  }
-
-  Widget _headerSearchBar() {
     return Container(
       padding: EdgeInsets.all(kDefaultPadding),
       color: kLightBlue,
       child: Row(
-        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          new Expanded(
-            child: new Container(
-              padding: EdgeInsets.only(right: kDefaultPadding * 0.5),
-              child: Container(
-                padding: EdgeInsets.only(left: kDefaultPadding),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8)),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: ('Cari Karyawan'),
-                    hintStyle: TextStyle(
-                      color: kSearchBarColor,
+          Expanded(
+            flex: 4,
+            child: TextField(
+              decoration: InputDecoration(
+                fillColor: Colors.white,
+                filled: true,
+                isDense: true,
+                contentPadding: EdgeInsets.only(left: 10),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide(
+                    width: 0,
+                    style: BorderStyle.none,
+                  ),
+                ),
+                hintText: ('Cari Karyawan'),
+                hintStyle: TextStyle(
+                  color: kSearchBarColor,
+                ),
+                suffixIcon: Icon(Icons.search, color: kSearchBarColor),
+              ),
+            ),
+          ),
+          SizedBox(width: 10),
+          Expanded(
+            flex: 1,
+            child: Material(
+              borderRadius: BorderRadius.circular(10),
+              color: kPrimaryColor,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: _onPressed,
+                child: Container(
+                  height: 46,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Cari',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: kWhite,
                     ),
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    suffixIcon: Icon(Icons.search, color: kSearchBarColor),
                   ),
                 ),
               ),
             ),
-          ),
-          new Wrap(
-            children: [
-              new MaterialButton(
-                textColor: Colors.white,
-                color: kPrimaryColor,
-                minWidth: 0,
-                height: 45,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text('Cari',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                onPressed: _onPressed,
-              ),
-            ],
           ),
         ],
       ),
